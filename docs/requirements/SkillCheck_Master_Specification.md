@@ -3,7 +3,7 @@ title: "SKILLCHECK | MASTER PROJECT SPECIFICATION"
 subtitle: "Improvement and Discovery of Soft Skills"
 author: "SkillCheck Project Team"
 date: "26 November 2026"
-version: "1.0-RC1 â€” Foundational team baseline for ratification"
+version: "1.0-RC1 — Foundational team baseline for ratification"
 ---
 
 # SKILLCHECK
@@ -20,7 +20,7 @@ version: "1.0-RC1 â€” Foundational team baseline for ratification"
 
 # 1. Binding Project Requirements
 
-The following **26 requirements are mandatory** for SkillCheck. Their descriptions are reproduced **verbatim**, preserving their spelling, punctuation and spacing. The internal IDs R01â€“R26 enable traceability throughout this same specification; they do not change the content. The columns QA and PROD reproduce the marked evaluation environments. An `x` is a required-environment designation, **not evidence that implementation or testing has passed**.
+The following **26 requirements are mandatory** for SkillCheck. Their descriptions are reproduced **verbatim**, preserving their spelling, punctuation and spacing. The internal IDs R01–R26 enable traceability throughout this same specification; they do not change the content. The columns QA and PROD reproduce the marked evaluation environments. An `x` is a required-environment designation, **not evidence that implementation or testing has passed**.
 
 ## 1.1 Mandatory requirements (verbatim)
 
@@ -35,7 +35,7 @@ The following **26 requirements are mandatory** for SkillCheck. Their descriptio
 | **R07** | `Payment Gateway // stripe, paypal` | x | x |
 | **R08** | `Testing ---Load Testing- Unit Testing. - Functional Testing - E2E - FrontEnd - BackEnd into CI/CD. /// Githubactions` | x | x |
 | **R09** | `Docker- DockerHub` | x | x |
-| **R10** | `Design Principles - at least 4 such as â€¦ SOLID - DRY - KISS -YAGNI - Encapsulation -Cohesion - Low Cupling - GRASP` | x | x |
+| **R10** | `Design Principles - at least 4 such as … SOLID - DRY - KISS -YAGNI - Encapsulation -Cohesion - Low Cupling - GRASP` | x | x |
 | **R11** | `DataBase --  at least 4 DB and one must be cache and another one document.` | x | x |
 | **R12** | `ApiGateway` | x | x |
 | **R13** | `Load Balancer` | x | x |
@@ -63,7 +63,7 @@ The requirement below remains **optional**, even though QA and PROD have `x` mar
 
 ## 1.3 Requirement interpretation and acceptance rules
 
-- **Scope lock:** R01â€“R26 are mandatory features or engineering constraints. They must not be dropped because a different stack is easier. If an ambiguity remains, record the risk and implement all unambiguous portions.
+- **Scope lock:** R01–R26 are mandatory features or engineering constraints. They must not be dropped because a different stack is easier. If an ambiguity remains, record the risk and implement all unambiguous portions.
 - **Explicit technology requirements:** R02 specifies Java Spring Boot and ReactJS; R06 requires AWS **and** a PaaS; R09 names Docker and Docker Hub. The solution architecture below includes all of them.
 - **Minimum quantities:** R03 covers web, mobile and desktop with roles/permissions; R08 lists load, unit, functional and E2E test types across frontend/backend with GitHub Actions; R10 requires four or more design principles; R11 at least four databases including cache and document; R14 at least three communications; R15 at least two architectures.
 - **Named examples and ambiguities:** R05 names Cloudflare, Keycloak and CORS; the working baseline implements all three. R14 provides several protocol names; the working baseline provides REST, WebSocket and webhooks while treating SOAP as a clarification item. R23 states `SDD , ODD` without defining the terms; do not fabricate meanings or mark R23 complete until clarified.
@@ -115,7 +115,7 @@ The table maps every requirement to a specific architecture component, implement
 
 **Initial skill domain.** Spoken communication, including message structure, time management and filler-word control. The platform must not infer that a short recording can scientifically diagnose empathy, leadership, personality, anxiety or other psychological conditions.
 
-**Primary outcomes.** Users can practice a real scenario in 60â€“90 seconds, receive a consistent 0â€“100 evaluation, understand the evidence behind their score, and access an improvement route tailored to their performance.
+**Primary outcomes.** Users can practice a real scenario in 60–90 seconds, receive a consistent 0–100 evaluation, understand the evidence behind their score, and access an improvement route tailored to their performance.
 
 ## 2.2 Product objectives and pilot success measures
 
@@ -142,9 +142,9 @@ The table maps every requirement to a specific architecture component, implement
 | ID | Capability | Definition of functional completion |
 |---|---|---|
 | FR-01 | Identity and profiles | Register/login with email or Google; session lifecycle and USER/ADMIN roles |
-| FR-02 | Challenge catalog | Filter by objective, difficulty and language; select a 60â€“90 s challenge |
+| FR-02 | Challenge catalog | Filter by objective, difficulty and language; select a 60–90 s challenge |
 | FR-03 | Recording | Device permission, visible timer, upload/retry, status and error handling |
-| FR-04 | Evaluation | Transcription, duration and filler metrics, clarity feedback, weighted 0â€“100 score and rank |
+| FR-04 | Evaluation | Transcription, duration and filler metrics, clarity feedback, weighted 0–100 score and rank |
 | FR-05 | Personal learning paths | Recommendations backed by approved knowledge sources and historical performance |
 | FR-06 | Knowledge upload | Upload and manage private documents; educator material enters only after review |
 | FR-07 | Progress | Past attempts, language-specific progress, improvement milestones and rank history |
@@ -164,7 +164,7 @@ The table maps every requirement to a specific architecture component, implement
 
 ## 3.1 Challenge cycle
 
-`Choose challenge â†’ grant microphone permission â†’ record 60â€“90 s â†’ upload securely â†’ transcribe â†’ calculate measurable metrics â†’ evaluate clarity â†’ compute score â†’ deliver feedback â†’ recommend next challenge â†’ retain result.`
+`Choose challenge → grant microphone permission → record 60–90 s → upload securely → transcribe → calculate measurable metrics → evaluate clarity → compute score → deliver feedback → recommend next challenge → retain result.`
 
 Real-time text display is optional; final transcript and results are required after submission. Audio processing must remain recoverable after temporary network failures and must not duplicate an attempt if a user retries.
 
@@ -174,17 +174,17 @@ Real-time text display is optional; final transcript and results are required af
 
 `Final score = 0.30 Ã— Duration + 0.40 Ã— Filler Control + 0.30 Ã— Clarity`
 
-Each component is normalized to 0â€“100. The resulting score is rounded to the nearest integer and bounded to [0, 100]. This weighting is a project business input; the component calibration below is **a technical proposal requiring product-owner acceptance and pilot validation**.
+Each component is normalized to 0–100. The resulting score is rounded to the nearest integer and bounded to [0, 100]. This weighting is a project business input; the component calibration below is **a technical proposal requiring product-owner acceptance and pilot validation**.
 
 | Component | Initial deterministic / reviewable rule | Evidence |
 |---|---|---|
-| Duration (D) | D = max(0, 100 âˆ’ 2 Ã— seconds outside the inclusive 60â€“90 s interval). Perfect range receives 100 | Recorded media duration, not STT timestamps |
-| Filler control (F) | Compute `fillers_per_100_words = 100 Ã— confirmed_fillers / max(1, spoken_words)`; F = max(0, 100 âˆ’ 12 Ã— fillers_per_100_words) | Original transcript, normalized tokens and contextual filler spans |
+| Duration (D) | D = max(0, 100 − 2 Ã— seconds outside the inclusive 60–90 s interval). Perfect range receives 100 | Recorded media duration, not STT timestamps |
+| Filler control (F) | Compute `fillers_per_100_words = 100 Ã— confirmed_fillers / max(1, spoken_words)`; F = max(0, 100 − 12 Ã— fillers_per_100_words) | Original transcript, normalized tokens and contextual filler spans |
 | Clarity (C) | Structured independent rubric: main idea 40%, concrete example 35%, closing 25%; each criterion graded 0, 0.5 or 1 with cited textual evidence | Model output using a strict schema; confidence, prompt version and reviewer sample |
 
-Filler lists are language-specific and context-aware. In Spanish, words such as `este`, `o sea`, `bueno` and `cÃ³mo decirlo` require contextual filtering. In English, `like` can be a meaningful word and must not be counted automatically. Empty or low-confidence transcripts are reported as `REVIEW_REQUIRED`, not scored as zero without explanation.
+Filler lists are language-specific and context-aware. In Spanish, words such as `este`, `o sea`, `bueno` and `cómo decirlo` require contextual filtering. In English, `like` can be a meaningful word and must not be counted automatically. Empty or low-confidence transcripts are reported as `REVIEW_REQUIRED`, not scored as zero without explanation.
 
-**Rank mapping (recommended working baseline):** Iron 0â€“19; Bronze 20â€“39; Silver 40â€“59; Gold 60â€“74; Platinum 75â€“89; Diamond 90â€“100. Rank thresholds must be validated with pilot users before formal release.
+**Rank mapping (recommended working baseline):** Iron 0–19; Bronze 20–39; Silver 40–59; Gold 60–74; Platinum 75–89; Diamond 90–100. Rank thresholds must be validated with pilot users before formal release.
 
 **Scoring invariants.** A failed transcription must not create a fabricated score. Only the backend calculates and persists official scores. Changes in model/prompt version must be tracked so a user's improvement is not confused with a scoring-system change.
 
@@ -244,9 +244,9 @@ No component needs an additional top-level folder: microfrontends are composed i
 |---|---|---|
 | API Gateway | Spring Cloud Gateway | Central API routing, request IDs, endpoint-level quotas, route policy and observability |
 | Load Balancer | AWS Application Load Balancer in target deployment | TLS routing, health checks and distribution across application replicas |
-| Method 1: REST/HTTPS | Browser/packaged apps â†” Spring Gateway/API | Identity-aware CRUD, catalog, attempts, scores, learning paths |
-| Method 2: WebSocket/WSS | Gateway â†” authenticated client | Asynchronous analysis status updates and progress event delivery |
-| Method 3: signed webhooks | Stripe test â†’ backend; backend â†’ n8n | Verified payment-state and automation events with idempotent processing |
+| Method 1: REST/HTTPS | Browser/packaged apps ↔ Spring Gateway/API | Identity-aware CRUD, catalog, attempts, scores, learning paths |
+| Method 2: WebSocket/WSS | Gateway ↔ authenticated client | Asynchronous analysis status updates and progress event delivery |
+| Method 3: signed webhooks | Stripe test → backend; backend → n8n | Verified payment-state and automation events with idempotent processing |
 
 Webhooks and WebSockets are distinct communication methods; REST remains the primary synchronous API. SOAP is present among examples in R14 and requires instructor clarification only if it is mandatory in addition to the stated minimum of three.
 
@@ -323,7 +323,7 @@ The following selections define the **recommended working architecture**. They f
 
 **Knowledge tiers:** (1) internal reviewed speaking and interview guidance; (2) teacher-supplied documents published only after administrator review; (3) documents privately uploaded by an individual user.
 
-`Upload â†’ malware/type/size checks â†’ private storage â†’ extraction â†’ cleaning â†’ chunking â†’ embedding â†’ Qdrant index with ACL metadata â†’ semantic retrieval filtered by user/visibility â†’ citations â†’ recommendation.`
+`Upload → malware/type/size checks → private storage → extraction → cleaning → chunking → embedding → Qdrant index with ACL metadata → semantic retrieval filtered by user/visibility → citations → recommendation.`
 
 Required metadata: `document_id`, `owner_id`, `visibility`, `source_type`, `review_status`, `language`, `chunk_id`, `embedding_model_version`, `created_at`, `expires_at` and `deleted_at`. No teacher or user document becomes globally available solely because it was uploaded. Retrieved text is treated as **untrusted content**, not executable instructions; prompts must include citations and refuse unsupported conclusions.
 
@@ -356,7 +356,7 @@ Baseline: **OWASP Top 10 (2025)** for risk coverage and **OWASP ASVS 5.0** as a 
 
 ## 8.3 Audio and document retention
 
-The product requires **configurable, limited audio retention**. Recommended policy: default **7 days**, learner-selectable **1â€“30 days**, private storage, explicit recording consent, automatic expiry jobs and an auditable delete request. Transcript, score and progress survive audio expiry only under the user's account retention settings. An account deletion job must remove objects, text, cached copies, vector re and derived indexes, including retry verification. Backup deletion windows and provider-specific data retention must be disclosed after providers are configured.
+The product requires **configurable, limited audio retention**. Recommended policy: default **7 days**, learner-selectable **1–30 days**, private storage, explicit recording consent, automatic expiry jobs and an auditable delete request. Transcript, score and progress survive audio expiry only under the user's account retention settings. An account deletion job must remove objects, text, cached copies, vector re and derived indexes, including retry verification. Backup deletion windows and provider-specific data retention must be disclosed after providers are configured.
 
 Only use audio for the declared feedback workflow. No biometric identity inference, covert voice profiling or training on learner recordings without separate consent. Legal review is required before launching a public service.
 
@@ -397,11 +397,11 @@ Alerts cover failed analysis jobs, elevated error rates, gateway 5xx, failed web
 | ADR-0006 Data and AI | Four stores with Qdrant RAG and provider-independent AI | Technical/AI reviewers |
 | ADR-0007 Networking | Spring Cloud Gateway, AWS ALB, REST/WSS/webhooks | Architecture reviewers |
 | ADR-0008 Delivery and cost | Local/QA first, AWS credits review, funded HA target separate | Product Owner / cloud owner |
-| ADR-0009 Data lifecycle | Audio default 7d, selectable 1â€“30d; deletion cascades | Product Owner / Security reviewers |
+| ADR-0009 Data lifecycle | Audio default 7d, selectable 1–30d; deletion cascades | Product Owner / Security reviewers |
 | ADR-0010 Evaluation rubric | Weights fixed 30/40/30; scoring subscale formula piloted and calibrated | Product Owner / AI reviewer |
 | ADR-0011 Payment demonstration | Stripe test-mode only, simulated entitlement, no real revenue | Product Owner / legal reviewer |
 
-**ADR identifier convention:** decision identifiers use four digits (`ADR-0001`, `ADR-0002`, â€¦). Only `ADR-0001` currently has a versioned file in `docs/decisions/`; the remaining identifiers are reserved for decisions still pending ratification. A row in this register is **not** evidence of approval, and a reserved identifier must not be treated as an approved decision.
+**ADR identifier convention:** decision identifiers use four digits (`ADR-0001`, `ADR-0002`, …). Only `ADR-0001` currently has a versioned file in `docs/decisions/`; the remaining identifiers are reserved for decisions still pending ratification. A row in this register is **not** evidence of approval, and a reserved identifier must not be treated as an approved decision.
 
 ## 10.2 Clarifications, assumptions and delivery risks
 
@@ -427,7 +427,7 @@ Alerts cover failed analysis jobs, elevated error rates, gateway 5xx, failed web
 3. The product backend is **Java Spring Boot** in accordance with R02. JavaScript tooling is permitted for React and build tasks; do not substitute Node.js/Express for the required backend.
 4. Do not reduce the platform to one SPA or one PostgreSQL database. Include microfrontends, Astro, WebAssembly and four purpose-specific databases.
 5. Never invent the meanings of SDD/ODD; never convert optional Next.js-style rendering requirements into mandatory scope.
-6. Keep the business contract: **students/job seekers; Spanish Free, English Premium demo; 60â€“90 s challenges; 30/40/30 score; web/mobile/desktop parity; private user and teacher-approved RAG content; configurable limited audio retention**.
+6. Keep the business contract: **students/job seekers; Spanish Free, English Premium demo; 60–90 s challenges; 30/40/30 score; web/mobile/desktop parity; private user and teacher-approved RAG content; configurable limited audio retention**.
 7. Use **AWS + PaaS** as the intended architecture; do not claim a multi-AZ deployed system costs zero dollars. Never use real Stripe billing keys or real charges for the demo.
 8. Treat audio, transcripts and uploaded documents as personal/private data. Validate authorization before database and vector retrieval. Never copy private data or secrets into agent prompts, logs or public documents.
 9. Use this blueprint as the shared starting point for **any project task**. Apply the relevant requirements, architecture and approved ADRs without assuming task ownership or assigning work to a specific contributor. Do not change the project tracker, shared documentation or source repositories without explicit authorization.
