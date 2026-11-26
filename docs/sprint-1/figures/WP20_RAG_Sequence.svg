@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1170" height="761" viewBox="0 0 1170 761">
+<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#6751A3" stroke-width="1.4" /></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff" />
+<rect x="23" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="125" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">Learner</text>
+<line x1="125" y1="74" x2="125" y2="736" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="253" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="355" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">Spring API</text>
+<line x1="355" y1="74" x2="355" y2="736" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="483" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="585" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">MongoDB</text>
+<line x1="585" y1="74" x2="585" y2="736" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="713" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="815" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">Qdrant</text>
+<line x1="815" y1="74" x2="815" y2="736" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="943" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="1045" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">LLM adapter</text>
+<line x1="1045" y1="74" x2="1045" y2="736" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<path d="M 125 110 H 346" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="240.0" y="97" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Request recommendations</text>
+<path d="M 355 187 H 576" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="470.0" y="174" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Read permitted source</text>
+<text x="470.0" y="190" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">manifests</text>
+<path d="M 355 264 H 806" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="585.0" y="251" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">ACL filtered similarity</text>
+<text x="585.0" y="267" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">search</text>
+<path d="M 815 341 H 364" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="585.0" y="328" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Authorized evidence chunks</text>
+<path d="M 355 418 H 1036" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="700.0" y="405" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Grounded prompt with</text>
+<text x="700.0" y="421" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">citations</text>
+<path d="M 1045 495 H 364" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="700.0" y="482" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Suggested exercises + source</text>
+<text x="700.0" y="498" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">IDs</text>
+<path d="M 355 572 H 134" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="240.0" y="559" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Private cited</text>
+<text x="240.0" y="575" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">recommendations</text>
+</svg>

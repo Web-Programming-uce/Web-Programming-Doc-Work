@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+"""Dependency-free, bootstrap-time validation. NOT an implementation test suite."""
+from pathlib import Path
+import sys
+
+repo = Path(__file__).resolve().parents[1]
+required = [
+    'README.md', 'CONTRIBUTING.md', 'AGENTS.md',
+    '.editorconfig', '.gitignore',
+    '.github/pull_request_template.md',
+    '.github/workflows/repository-checks.yml',
+    'docs/requirements/SkillCheck_Master_Specification.md',
+    'docs/requirements/README.md',
+    'docs/sprint-1/README.md',
+    'docs/workflow/GIT_WORKFLOW.md',
+    'docs/workflow/REPOSITORY_BOOTSTRAP.md',
+    'docs/decisions/README.md',
+    'docs/decisions/ADR-0001-proposed-architecture-and-workflow.md',
+    'docs/architecture/README.md',
+    'apps/api/README.md', 'apps/web/README.md', 'apps/site/README.md',
+    'apps/mobile/README.md', 'apps/desktop/README.md',
+    'packages/shared/README.md', 'packages/ui/README.md',
+    'infra/README.md', 'tests/README.md',
+]
+figures = [
+    'docs/sprint-1/figures/WP20_Context.svg',
+    'docs/sprint-1/figures/WP20_Containers.svg',
+    'docs/sprint-1/figures/WP20_Speech_Sequence.svg',
+    'docs/sprint-1/figures/WP20_RAG_Sequence.svg',
+    'docs/sprint-1/figures/WP20_Deployment.svg',
+    'docs/sprint-1/figures/WP30_Evaluation.svg',
+    'docs/sprint-1/figures/WP30_RAG.svg',
+    'docs/sprint-1/figures/WP31_Security_Boundaries.svg',
+]
+required.extend(figures)
+for key in ('WP-20', 'WP-21', 'WP-30', 'WP-31'):
+    required.extend(str(x.relative_to(repo)) for x in (repo / 'docs/sprint-1').glob(f'{key}_*.md'))
+    required.extend(str(x.relative_to(repo)) for x in (repo / 'docs/sprint-1').glob(f'{key}_*.pdf'))
+
+errors = []
+for relative in required:
+    path = repo / relative
+    if not path.is_file() or path.stat().st_size < 10:
+        errors.append(f'Missing or empty file: {relative}')
+
+for key in ('WP-20', 'WP-21', 'WP-30', 'WP-31'):
+    files = list((repo / 'docs/sprint-1').glob(f'{key}_*.md'))
+    if len(files) != 1:
+        errors.append(f'Expected exactly one Markdown document for {key}, found {len(files)}')
+    pdfs = list((repo / 'docs/sprint-1').glob(f'{key}_*.pdf'))
+    if len(pdfs) != 1:
+        errors.append(f'Expected exactly one PDF for {key}, found {len(pdfs)}')
+
+master_path = repo / 'docs/requirements/SkillCheck_Master_Specification.md'
+if master_path.is_file():
+    master = master_path.read_text(encoding='utf-8')
+    for n in range(1, 27):
+        marker = f'R{n:02d}'
+        if marker not in master:
+            errors.append(f'Master Specification missing {marker}')
+    if 'OPT-01' not in master:
+        errors.append('Master Specification missing OPT-01')
+    if 'https://github.com/Web-Programming-uce/Web-Programming-Doc-Work' not in master:
+        errors.append('Master Specification missing official repo URL')
+
+# Every diagram must be linked from at least one Markdown document (no orphan figures).
+markdown_text = '\n'.join(
+    path.read_text(encoding='utf-8', errors='replace')
+    for path in repo.glob('docs/**/*.md')
+)
+for figure in figures:
+    if Path(figure).name not in markdown_text:
+        errors.append(f'Diagram not linked from any Markdown document: {figure}')
+
+for suffix in ('.env', '.pem', '.key', '.p12'):
+    for file in repo.rglob(f'*{suffix}'):
+        if any(p in {'.git', 'node_modules'} for p in file.parts):
+            continue
+        errors.append(f'Potential private file in package: {file.relative_to(repo)}')
+
+if errors:
+    print('Repository baseline FAILED:')
+    for error in errors:
+        print(f' - {error}')
+    sys.exit(1)
+
+print(f'Repository baseline passed: {len(required)} required files checked; master requirements R01-R26 and OPT-01 present.')
+print('NOTE: No application build, functional test, security scan or deployment was executed by this check.')

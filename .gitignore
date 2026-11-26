@@ -1,0 +1,46 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+secrets/
+
+# User content: never commit private data
+private-data/
+recordings/
+transcripts/
+uploads/
+
+# Java / Maven / IDE
+**/target/
+*.class
+.idea/
+*.iml
+.nb-gradle/
+nbproject/private/
+
+# Node / frontend
+node_modules/
+**/dist/
+**/.next/
+**/.astro/
+**/coverage/
+
+# Python local scripts
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Build bundles
+*.log
+*.tmp

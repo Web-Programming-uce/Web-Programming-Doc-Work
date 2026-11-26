@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1223" viewBox="0 0 1400 1223">
+<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#6751A3" stroke-width="1.4" /></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff" />
+<rect x="23" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="125" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">User client</text>
+<line x1="125" y1="74" x2="125" y2="1198" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="253" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="355" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">Gateway + API</text>
+<line x1="355" y1="74" x2="355" y2="1198" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="483" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="585" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">Storage</text>
+<line x1="585" y1="74" x2="585" y2="1198" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="713" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="815" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">AI worker</text>
+<line x1="815" y1="74" x2="815" y2="1198" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="943" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="1045" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">AI provider</text>
+<line x1="1045" y1="74" x2="1045" y2="1198" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<rect x="1173" y="22" rx="12" ry="12" width="204" height="52" stroke="#8274bc" fill="#f2effc" stroke-width="2" />
+<text x="1275" y="54" font-family="DejaVu Sans" font-size="20" text-anchor="middle" fill="#30246D" font-weight="bold">Stores</text>
+<line x1="1275" y1="74" x2="1275" y2="1198" stroke="#b6accf" stroke-dasharray="6,6" stroke-width="2" />
+<path d="M 125 110 H 346" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="240.0" y="97" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Create attempt / idempotency</text>
+<path d="M 355 187 H 134" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="240.0" y="174" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Attempt ID and upload intent</text>
+<path d="M 125 264 H 576" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="355.0" y="251" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Private audio upload</text>
+<path d="M 125 341 H 346" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="240.0" y="328" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Submit attempt</text>
+<path d="M 355 418 H 806" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="585.0" y="405" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Queue validated attempt</text>
+<path d="M 815 495 H 1036" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="930.0" y="482" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Request STT transcript</text>
+<path d="M 1045 572 H 824" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="930.0" y="559" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Transcript result</text>
+<path d="M 815 649 H 871 V 671 H 824" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="873" y="636" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Duration + filler rules</text>
+<path d="M 815 726 H 1036" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="930.0" y="713" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Structured clarity rubric</text>
+<path d="M 1045 803 H 824" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="930.0" y="790" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Validated rubric fields</text>
+<path d="M 815 880 H 1266" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="1045.0" y="867" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Persist weighted score</text>
+<path d="M 815 957 H 134" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="470.0" y="944" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Status notification</text>
+<path d="M 125 1034 H 346" stroke="#6555A9" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="240.0" y="1021" text-anchor="middle" font-family="DejaVu Sans" font-size="18" fill="#363051">Read own result</text>
+</svg>
