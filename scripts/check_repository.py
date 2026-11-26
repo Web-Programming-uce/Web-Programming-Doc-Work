@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 """Dependency-free, bootstrap-time validation. NOT an implementation test suite."""
 from pathlib import Path
+import re
 import sys
+
+# Double-encoded UTF-8 ("mojibake") such as â€”, â€“, â†’, Â· or Ã³.
+# Markdown files must contain the intended characters (—, –, →, ·, ó), not their CP1252 misreadings.
+MOJIBAKE = re.compile(
+    '\u00e2[\u0080-\u00bf\u2018-\u203a\u20ac\u2122\u0152\u0153\u0160\u0161\u0178\u017d\u017e\u0192\u02c6\u02dc]{1,2}'
+    '|\u00c2[\u0080-\u00bf]'
+    '|\u00c3[\u0080-\u00bf]'
+)
 
 repo = Path(__file__).resolve().parents[1]
 required = [
@@ -72,6 +81,23 @@ for figure in figures:
     if Path(figure).name not in markdown_text:
         errors.append(f'Diagram not linked from any Markdown document: {figure}')
 
+# Markdown encoding: valid UTF-8 without BOM and without double-encoded (mojibake) characters.
+for path in sorted(repo.rglob('*.md')):
+    if any(part in {'.git', 'node_modules'} for part in path.parts):
+        continue
+    relative = path.relative_to(repo)
+    raw = path.read_bytes()
+    if raw.startswith(b'\xef\xbb\xbf'):
+        errors.append(f'UTF-8 BOM not allowed: {relative}')
+    try:
+        text = raw.decode('utf-8')
+    except UnicodeDecodeError as exc:
+        errors.append(f'Invalid UTF-8: {relative} ({exc.reason})')
+        continue
+    for match in MOJIBAKE.finditer(text):
+        line = text.count('\n', 0, match.start()) + 1
+        errors.append(f'Mojibake (double-encoded UTF-8) at {relative}:{line}: {match.group(0)!r}')
+
 for suffix in ('.env', '.pem', '.key', '.p12'):
     for file in repo.rglob(f'*{suffix}'):
         if any(p in {'.git', 'node_modules'} for p in file.parts):
@@ -85,4 +111,5 @@ if errors:
     sys.exit(1)
 
 print(f'Repository baseline passed: {len(required)} required files checked; master requirements R01-R26 and OPT-01 present.')
+print('Markdown encoding checked: valid UTF-8, no BOM and no mojibake sequences.')
 print('NOTE: No application build, functional test, security scan or deployment was executed by this check.')

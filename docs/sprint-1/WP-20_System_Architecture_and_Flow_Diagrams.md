@@ -9,14 +9,14 @@ baseline: SkillCheck Master Project Specification 1.0-RC1
 prepared: 26 November 2026
 ---
 
-# WP-20 â€” System Architecture & Flow Diagrams
+# WP-20 — System Architecture & Flow Diagrams
 
 ## C4 context, container, runtime sequences and deployment
 
-**Project:** SkillCheck â€” Improvement and Discovery of Soft Skills  
-**Work item:** WP-20 Â· System Architecture & Flow Diagrams  
+**Project:** SkillCheck — Improvement and Discovery of Soft Skills  
+**Work item:** WP-20 · System Architecture & Flow Diagrams  
 **Owner:** Darwin Toapanta  
-**Status:** **REVIEW-READY / DESIGN ONLY â€” pending team ratification**  
+**Status:** **REVIEW-READY / DESIGN ONLY — pending team ratification**  
 **Architecture baseline:** Java Spring Boot backend, React frontend, four data stores, provider-adapter AI, Keycloak and AWS+PaaS. Existing ticket wording that describes a Node.js server and Supabase Auth is **superseded as a technical proposal**, not as a change to the ticket. No Jira edit was performed.
 
 ## 1. Scope, boundary and design decisions
@@ -25,9 +25,9 @@ The C4 views describe the SkillCheck system as it should be implemented under th
 
 | View | Purpose | Deliverable |
 |---|---|---|
-| C4 Level 1 Â· Context | Actors and external systems, system boundaries and trust | Figure 1 and system-context description |
-| C4 Level 2 Â· Container | Deployable applications, stores and data flows | Figure 2 and component contracts |
-| Runtime sequences | Recording/evaluation; protected RAG; checkout | Figures 3â€“4 and failure behavior |
+| C4 Level 1 · Context | Actors and external systems, system boundaries and trust | Figure 1 and system-context description |
+| C4 Level 2 · Container | Deployable applications, stores and data flows | Figure 2 and component contracts |
+| Runtime sequences | Recording/evaluation; protected RAG; checkout | Figures 3–4 and failure behavior |
 | Deployment and operations | QA vs target AWS/HA topology | Deployment topology and release constraints |
 
 **Notation:** solid arrows are intended communication paths; labels state the protocol. The figures represent **proposed design**, not currently running infrastructure. Where a data flow is asynchronous, REST remains the durable status lookup fallback.
@@ -48,7 +48,7 @@ flowchart LR
 
 ![Figure 1. C4 Level 1 system context](figures/WP20_Context.svg)
 
-*Figure 1 â€” System context: learners, administrators, SkillCheck and external systems.*
+*Figure 1 — System context: learners, administrators, SkillCheck and external systems.*
 
 **System boundary:** includes client applications, authentication integration, business API, the internal knowledge retrieval workflow and automation. **External parties** include Google Identity, transcription/LLM provider, Stripe Sandbox, Supabase hosting platform, AWS infrastructure and an approved outbound email gateway. Keycloak is operated as an internal identity container, while Google remains an external identity provider.
 
@@ -80,7 +80,7 @@ flowchart TB
 
 ![Figure 2. C4 Level 2 container diagram](figures/WP20_Containers.svg)
 
-*Figure 2 â€” Containers: clients, edge, gateway, core API, identity, four stores, storage, AI, payments and automation.*
+*Figure 2 — Containers: clients, edge, gateway, core API, identity, four stores, storage, AI, payments and automation.*
 
 **Client-side composition:** React web shell combines challenge, progress and admin microfrontends with Module Federation. Bundled mobile/desktop clients reuse React screens and service contracts, but dynamic remote loading is evaluated per platform; packaged clients may bundle a versioned, integrity-tested composition. Astro is independent public content, not a fourth authenticated microfrontend.
 
@@ -105,7 +105,7 @@ flowchart TB
 
 ### 3.2 Port/adapters and database ownership
 
-`Presentation (REST/WebSocket) â†’ Application use cases â†’ Domain policies â†’ Ports â†’ Adapters (identity, four stores, object storage, AI, billing)` is the hexagonal dependency direction. Domain logic does not import vendor SDK types. A learner never selects database ownership by changing a client-supplied `owner_id`; claims are derived from verified tokens on the server.
+`Presentation (REST/WebSocket) → Application use cases → Domain policies → Ports → Adapters (identity, four stores, object storage, AI, billing)` is the hexagonal dependency direction. Domain logic does not import vendor SDK types. A learner never selects database ownership by changing a client-supplied `owner_id`; claims are derived from verified tokens on the server.
 
 PostgreSQL commits attempts, ratings and entitlements. Redis stores TTL status, quotas and caches. MongoDB stores extracted source/document records and provenance. Qdrant stores user-filtered vectors. Blob storage is distinct and not counted among databases. Cross-store deletion is **eventual and auditable**, with a retry queue and tombstone guards.
 
@@ -137,9 +137,9 @@ sequenceDiagram
 
 ![Figure 3. Runtime sequence: recording to scored feedback](figures/WP20_Speech_Sequence.svg)
 
-*Figure 3 â€” Runtime sequence A: upload, transcription, deterministic metrics, clarity evaluation and persisted score.*
+*Figure 3 — Runtime sequence A: upload, transcription, deterministic metrics, clarity evaluation and persisted score.*
 
-**Failure behavior:** `CREATED â†’ UPLOADED â†’ PROCESSING â†’ COMPLETED` or `REVIEW_REQUIRED/FAILED`. Network retries reuse the same attempt ID; no double scoring. Unknown language, empty/low-quality STT or unsupported media cannot produce a fabricated numeric score. Workers emit only non-sensitive operational logs. The backend computes `S = round(0.30D + 0.40F + 0.30C)` from validated 0â€“100 component values.
+**Failure behavior:** `CREATED → UPLOADED → PROCESSING → COMPLETED` or `REVIEW_REQUIRED/FAILED`. Network retries reuse the same attempt ID; no double scoring. Unknown language, empty/low-quality STT or unsupported media cannot produce a fabricated numeric score. Workers emit only non-sensitive operational logs. The backend computes `S = round(0.30D + 0.40F + 0.30C)` from validated 0–100 component values.
 
 ## 5. Runtime sequence B: private RAG and premium simulation
 
@@ -162,9 +162,9 @@ sequenceDiagram
 
 ![Figure 4. Runtime sequence: private RAG and premium simulation](figures/WP20_RAG_Sequence.svg)
 
-*Figure 4 â€” Runtime sequence B: ACL-prefiltered retrieval, grounded recommendations and the test-mode checkout boundary.*
+*Figure 4 — Runtime sequence B: ACL-prefiltered retrieval, grounded recommendations and the test-mode checkout boundary.*
 
-**Checkout boundary:** `POST /billing/checkout/test â†’ Stripe Checkout(test) â†’ POST /webhooks/stripe` (raw-body signature verification) â†’ event deduplication in PostgreSQL â†’ grant `DEMO_PREMIUM`. Returning from the Checkout success URL **alone is never sufficient** to grant entitlement. No live key, live charge or external merchant onboarding is part of this semester demonstration.
+**Checkout boundary:** `POST /billing/checkout/test → Stripe Checkout(test) → POST /webhooks/stripe` (raw-body signature verification) → event deduplication in PostgreSQL → grant `DEMO_PREMIUM`. Returning from the Checkout success URL **alone is never sufficient** to grant entitlement. No live key, live charge or external merchant onboarding is part of this semester demonstration.
 
 ## 6. Deployment, availability and cost model
 
@@ -194,7 +194,7 @@ flowchart TB
 
 ![Figure 5. Target deployment topology](figures/WP20_Deployment.svg)
 
-*Figure 5 â€” Target AWS production topology: edge, ALB, two availability zones and shared recoverable state (requires funding; not provisioned).*
+*Figure 5 — Target AWS production topology: edge, ALB, two availability zones and shared recoverable state (requires funding; not provisioned).*
 
 **Availability caveat:** two API replicas alone do not make SkillCheck highly available. Identity, databases, private storage, DNS, certificates, job processing and webhook deliveries need redundant operation or tested recovery. Proposed service objectives: 99.9% availability, RTO 4h, RPO 24h; these are **targets**, not measured SLA values. An AWS ALB and multi-AZ services can incur charges; a USD 0 budget prohibits provisioning without funding/credits and an account owner.
 
@@ -225,12 +225,12 @@ All packages build from **one Git repository**. Java uses Maven modules; TypeScr
 
 | Requirement cluster | This design's coverage | Future verification artifact |
 |---|---|---|
-| R01â€“R04, R22, R24 | Monorepo, Spring/React, microfrontends, Astro, three clients, WASM | Build matrices, package install, platform mic/OAuth test, WASM benchmark |
+| R01–R04, R22, R24 | Monorepo, Spring/React, microfrontends, Astro, three clients, WASM | Build matrices, package install, platform mic/OAuth test, WASM benchmark |
 | R05, R26 | Cloudflare, Keycloak, CORS, policy enforcement | Token rejection tests, cross-user IDOR tests, OWASP scans |
 | R06, R12, R13, R17 | AWS+PaaS, gateway, ALB, target multi-AZ recovery | AWS config export, health tests, failover/report and approved funding |
 | R07, R14 | Stripe test, REST/WSS/webhooks | Postman/contract tests, signed webhook replay tests |
-| R08â€“R11, R15â€“R18 | CI, DockerHub, principles, 4 stores, 2 styles, monitoring | GitHub Actions run, image digests, arch review, dashboards |
-| R19â€“R21, R25 | LLM, n8n, RAG and embeddings adapters | Evaluation fixtures, retrieval ACL tests, ingestion/delete evidence |
+| R08–R11, R15–R18 | CI, DockerHub, principles, 4 stores, 2 styles, monitoring | GitHub Actions run, image digests, arch review, dashboards |
+| R19–R21, R25 | LLM, n8n, RAG and embeddings adapters | Evaluation fixtures, retrieval ACL tests, ingestion/delete evidence |
 | R23 | SDD/ODD ambiguity | Instructor clarification required; do not claim resolved |
 
 **Architectural risks:** (1) four-store operational load; (2) dynamic microfrontends in mobile WebViews; (3) STT removal of filled pauses; (4) OAuth origin/redirect variance; (5) private-RAG cross-user leaks; (6) zero-cost constraint versus true cloud HA; (7) provider cost/retention limitations.
@@ -241,16 +241,16 @@ All packages build from **one Git repository**. Java uses Maven modules; TypeScr
 - C4 container view separates the React clients, Spring Gateway/Core, Keycloak, four stores, AI, Stripe and n8n.
 - Two runtime sequences specify normal, error, authorization and asynchronous paths.
 - Deployment view distinguishes local demo from funded production availability.
-- Requirements R01â€“R26 are traceable to architectural concerns; R23 is explicitly open.
+- Requirements R01–R26 are traceable to architectural concerns; R23 is explicitly open.
 - All diagrams and components use Java Spring Boot rather than silently preserving an incompatible Node.js backend.
 
 ### References
 
-- C4 model notation â€” https://c4model.com/
-- Spring Cloud Gateway â€” https://docs.spring.io/spring-cloud-gateway/reference/intro.html
-- Spring Security JWT â€” https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
-- Keycloak identity brokering â€” https://www.keycloak.org/docs/latest/server_admin/
-- OWASP API Security â€” https://owasp.org/www-project-api-security/
+- C4 model notation — https://c4model.com/
+- Spring Cloud Gateway — https://docs.spring.io/spring-cloud-gateway/reference/intro.html
+- Spring Security JWT — https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+- Keycloak identity brokering — https://www.keycloak.org/docs/latest/server_admin/
+- OWASP API Security — https://owasp.org/www-project-api-security/
 
 **Review signature:** Product Owner __________ | Architect __________ | Security Reviewer __________ | Date __________  
 **Jira status:** unchanged; this is a design deliverable, not implementation evidence.
